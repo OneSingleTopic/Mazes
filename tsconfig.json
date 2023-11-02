@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ESNext", // The ECMAScript target version (adjust as needed)
+        "module": "ESNext", // The module system to use (ESNext for modern JS)
+        "outDir": "./dist", // Output directory for compiled JavaScript files
+        "rootDir": "./src", // Source directory for TypeScript files
+        "strict": true, // Enable strict type checking
+        "esModuleInterop": true, // Allow default imports from modules with no default export
+        "skipLibCheck": true, // Skip type checking of declaration files (e.g., .d.ts)
+        "removeComments": true, // Remove comments from compiled JS (optional)
+        "sourceMap": true // Generate source maps for debugging (optional)
+    },
+    "include": [
+        "src/**/*.ts" // Specify the files to include in compilation
+    ],
+    "exclude": [
+        "node_modules" // Specify files/directories to exclude from compilation
+    ]
+}
