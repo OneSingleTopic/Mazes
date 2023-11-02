@@ -24,7 +24,7 @@ export class PolarGrid implements Grid {
     }
 
     get dimension(): number {
-        return (this.grid.map(element => element.length).reduce((sum, current) => sum + current), 0)
+        return this.grid.reduce((sum, arr) => sum + arr.length, 0)
     }
 
     create_grid(): void {
@@ -39,7 +39,7 @@ export class PolarGrid implements Grid {
             const circumference = 2 * Math.PI * radius;
             const previous_count = this.grid[i - 1].length;
             const estimated_cell_width = circumference / previous_count;
-            const ratio = Math.round(estimated_cell_width / row_height);
+            const ratio = this.compute_ratio(estimated_cell_width, row_height);
             const cells = previous_count * ratio
 
             for (let j = 0; j < cells; j++) {
@@ -50,6 +50,9 @@ export class PolarGrid implements Grid {
 
     }
 
+    compute_ratio(estimated_cell_width: number, row_height: number): number {
+        return Math.round(estimated_cell_width / (1 * row_height))
+    }
     configure_grid(): void {
         for (let i = 1; i < this.rows; i++) {
             for (let j = 0; j < this.grid[i].length; j++) {
@@ -64,12 +67,6 @@ export class PolarGrid implements Grid {
 
             this.grid[i][0].L = this.get(i, this.grid[i].length - 1);
             this.grid[i][this.grid[i].length - 1].R = this.get(i, 0);
-        }
-
-        for (let i = 0; i < this.rows; i++) {
-            for (let j = 0; j < this.grid[i].length; j++) {
-                console.log(this.grid[i][j].id, this.grid[i][j].neighbors())
-            }
         }
     }
 
